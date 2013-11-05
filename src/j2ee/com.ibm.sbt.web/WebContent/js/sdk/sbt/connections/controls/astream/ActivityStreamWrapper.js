@@ -42,7 +42,10 @@ define(["../../../declare", "../../../url", "../../../config", "../../../util", 
             var connectionsUrl = this._endpoint.baseUrl;
             var libUrl = new Url(config.Properties.libraryUrl);
             var libQuery = libUrl.getQuery();
-            var libQueryObj = util.splitQuery(libQuery, "&");
+            var libQueryObj = {};
+            if(libQuery){
+                libQueryObj = util.splitQuery(libQuery, "&");
+            }
             
             lang.mixin(libQueryObj, {
                 lib: "dojo",
