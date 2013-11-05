@@ -1086,7 +1086,7 @@ define([ "../declare", "../config", "../lang", "../stringUtil", "../Promise", ".
         
         /**
          * 
-         * @returns
+         * @returns The description of the event
          */
         getContent : function(){
             return this.getAsString("content");
@@ -1094,10 +1094,31 @@ define([ "../declare", "../config", "../lang", "../stringUtil", "../Promise", ".
         
         /**
          * 
-         * @returns
+         * @returns The location of the event
          */
         getLocation : function(){
             return this.getAsString("location");
+        },
+        
+        /**
+         * @returns The date the event starts
+         */
+        getStartDate : function(){
+            return this.getAsString("startDate");
+        },
+        
+        /**
+         * @returns The date the event ends
+         */
+        getEndDate : function(){
+            return this.getAsString("endDate");
+        },
+        
+        /**
+         * @returns True if event lasts entire day, false otherwise.
+         */
+        getAllDay : function(){
+            return this.getAsString("allDay") !== 0;
         },
 
         /**
@@ -1163,7 +1184,6 @@ define([ "../declare", "../config", "../lang", "../stringUtil", "../Promise", ".
             }
             return this._contributor;
         }
-
     });
 
     /*

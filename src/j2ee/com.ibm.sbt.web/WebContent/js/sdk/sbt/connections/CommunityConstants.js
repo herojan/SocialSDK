@@ -182,9 +182,9 @@ define([ "../lang", "./ConnectionsConstants" ], function(lang,conn) {
             frequency : "snx:recurrence/@frequency",
             interval : "snx:recurrence/@interval",
             until : "snx:recurrence/snx:until",
-            allDay : "snx:recurrence/snx:allday",
-            startDate : "snx:recurrence/snx:startDate",
-            endDate : "snx:recurrence/snx:endDate",
+            allDay : "snx:allday",
+            startDate : "snx:startDate",
+            endDate : "snx:endDate",
             byDay : "snx:recurrence/snx:byDay"
         },
 
@@ -334,6 +334,18 @@ define([ "../lang", "./ConnectionsConstants" ], function(lang,conn) {
          * @for sbt.connections.CommunityService
          */
         AtomCommunityEvent : "/${communities}/calendar/atom/calendar/event",
+        
+        /**
+         * Parameters: 
+         *   type - Mandatory parameter, must be 'attent' or 'follow'
+         *   eventUuid - The uuid of the event that you want to follow or attend.
+         *   eventInstUuid - The uuid of the event instance that you want to follow or attend.
+         * 
+         * @property AtomCommunityEventAttend
+         * @type String
+         * @for sbt.connections.CommunityService
+         */
+        AtomCommunityEventAttend : "/${communities}/calendar/atom/calendar/event/attendees",
         
         /**
          * Obtain a full representation of the invitations as an Atom entry document.
