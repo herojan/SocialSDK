@@ -27,21 +27,6 @@ define(["../../../declare", "../../../lang", "../../../url",
      */
     var ActivityStreamWrapper = declare([ WidgetWrapper ], {
         /**
-         * The url of the css you want to use as the ActivityStream css. This is if on your connections server the css is in a non-default location.
-         * @property cssUrl
-         * @type String
-         */
-        cssUrl : "",
-        
-        /**
-         * If the side navigation dijit on the Connections server is using a custom js class.
-         * 
-         * @property sideNavClassName
-         * @type String
-         */
-        sideNavClassName : "",
-        
-        /**
          * Set the html template which will go inside the iframe.
          * 
          * @property defaultTemplate
@@ -51,6 +36,9 @@ define(["../../../declare", "../../../lang", "../../../url",
         
         /**
          * Overriding the method in WidgetWrapper for providing the substitutions for variables in the template.
+         * 
+         * Replacements needed: 
+         * proxyUrl, connectionsContextRoot, 
          * 
          * @method getTransformObject
          * @returns {Object}
@@ -97,7 +85,8 @@ define(["../../../declare", "../../../lang", "../../../url",
                 libraryUrl: libUrl.getUrl(),
                 sbtProps: JSON.stringify(sbtProps),
                 connectionsASNav: connectionsSideNav,
-                cssUrl: cssUrl
+                cssUrl: cssUrl,
+                connectionsContextRoot: "connections"
             };
             
             
@@ -139,25 +128,7 @@ define(["../../../declare", "../../../lang", "../../../url",
          */
         constructor: function(args){
             this.args = args;
-            if(args.cssUrl){
-                this.cssUrl = args.cssUrl;
-            }
-            if(args.sideNavClassName){
-                this.sideNavClassName = args.sideNavClassName;
-            }
-            if(!this.isSupportedBrowser()){
-                this.defaultTemplate = nls.IE9Unsupported;
-            }
-        },
-        
-        isSupportedBrowser: function(){
-            if(lang.isIE() < 10){ // Don't load the stream for IE < 10
-                return false;
-            }
-            
-            return true;
         }
-        
     });
     
     return ActivityStreamWrapper;

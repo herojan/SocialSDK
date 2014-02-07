@@ -28,14 +28,37 @@ define(["../../../declare", "../../../config", "../../../stringUtil", "../../../
          */
         endpoint: null,
         
+        /*
+         * The type of auth we will use. This will have been determined by the url given to the activitystream as an arg.
+         * 
+         * @property authType 
+         * @type String
+         * @default "public"
+         */
+        authType: "public",
+        
+        /*
+         * Service mappings, e.g. if /files path is customised to /myfiles
+         * 
+         * @property contextRootMap 
+         * @type Object
+         */
         contextRootMap: {
             connections: "connections"
         },
         
         /*
-         * A helper method to ensure things like a proxy and and authentication protocol are present in the url.
+         * This method modifies the activitystream request urls so that they
+         * 1. Go through our proxy, and has the correct service mapping.
+         * 2. All conform to the same auth type.
          * 
-         * Most internal connections ActivityStream urls don't use an authentication protocol.
+         * Auth types: 
+         * sso    url pattern: '.../opensocial/rest/...'
+         * oauth  url pattern: '.../opensocial/oauth/rest/...'
+         * basic  url pattern: '.../opensocial/basic/rest/...'
+         * public url pattern: '.../opensocial/anonymous/rest/...'
+         * 
+         * Most urls will be using sso by default.
          * 
          * @method modifyUrl
          * 
@@ -44,6 +67,8 @@ define(["../../../declare", "../../../config", "../../../stringUtil", "../../../
          * @param {String} args.url The url which we will xhr to. If this is not present this method does nothing.
          */
         modifyUrl: function(args){
+            
+            
             if(this.endpoint){
                 lang.mixin(this.contextRootMap, this.endpoint.serviceMappings);
                 
