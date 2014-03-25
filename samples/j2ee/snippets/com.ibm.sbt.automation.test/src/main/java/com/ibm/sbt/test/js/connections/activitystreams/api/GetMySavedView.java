@@ -44,8 +44,7 @@ public class GetMySavedView extends BaseActivityStreamsTest {
     	try {
 			saveEntry();
 		} catch (ActivityStreamServiceException e) {
-			e.printStackTrace();
-			Assert.fail("Problem saving event.");
+			Assert.fail(e.getMessage());
 		}
     }
     

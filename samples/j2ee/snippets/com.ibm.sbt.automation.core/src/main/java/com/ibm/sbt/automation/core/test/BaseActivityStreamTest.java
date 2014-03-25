@@ -49,8 +49,7 @@ public class BaseActivityStreamTest extends BaseWrapperTest{
 				communityUuid = communityService.createCommunity("TestTitle" + System.currentTimeMillis(), "Test content.", "public");
 				community = communityService.getCommunity(communityUuid);
 			} catch (CommunityServiceException e) {
-				e.printStackTrace();
-				Assert.fail("Problem creating test community.");
+				Assert.fail(e.getMessage());
 			}
 		} else{
 			communityUuid = community.getCommunityUuid();
