@@ -1,6 +1,6 @@
 package com.ibm.sbt.test.lib;
 /*
- * © Copyright IBM Corp. 2013
+ * Â© Copyright IBM Corp. 2013
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,6 +36,7 @@ public class MockEndpoint extends BasicEndpoint {
 	private Endpoint endpoint;
 	private String innerEndpoint;
 	private String mockMode;
+	private boolean authenticated = true;
 
 	public MockEndpoint() {
 		super();		
@@ -45,6 +46,15 @@ public class MockEndpoint extends BasicEndpoint {
 		this.endpoint = endpoint;
 	}
 
+	public void setAuthenticated(boolean authenticated){
+		this.authenticated = authenticated;
+	}
+
+	@Override
+	public boolean isAuthenticated(){
+		return authenticated;
+	}
+	
 	@Override
 	public ClientService getClientService() throws ClientServicesException {
 		Endpoint ep = endpoint != null ? endpoint : EndpointFactory
